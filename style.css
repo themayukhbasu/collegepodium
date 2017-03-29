@@ -1,0 +1,114 @@
+#wrapper {
+	width: 100%;
+	min-width: 740px;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	
+	color: #4d4d4d;
+	
+}
+
+body {
+	margin: 0px;
+	color: #151515;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	background-color: #EFF5F8;
+}
+
+#top {
+	overflow: hidden;
+	/*text-align: center;  
+	background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(247,2,2,0.47)),color-stop( 54.40% , rgba(245,148,150,0.47)),color-stop( 100% , rgba(255,96,96,1.00)));
+	background-image: -webkit-linear-gradient(270deg,rgba(247,2,2,0.47) 0%,rgba(245,148,150,0.47) 54.40%,rgba(255,96,96,1.00) 100%);
+	background-image: linear-gradient(180deg,rgba(247,2,2,0.47) 0%,rgba(245,148,150,0.47) 54.40%,rgba(255,96,96,1.00) 100%);  */  
+	
+}
+
+#hero 
+{
+	padding: 50px;
+
+}
+#top h3 {
+	text-align: center;
+	color: #EA724F;
+	margin-top: 0px;
+	margin-bottom: 3px;
+	padding-left: 533px;
+	font-variant: small-caps;
+	font-size: 25px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+#mainnav ul {
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	list-style-type: none;
+}
+#mainnav a {
+	float: left;
+	width: 25%;
+	display: block;
+	background-color: #4d4d4d;
+	text-align: center;
+	text-decoration: none;
+	color: #EDEDED;
+	padding-top: 6px;
+	font-size: 20px;
+	padding-bottom: 6px;
+}
+
+#mainnav a:hover, #mainnav a:active, #mainnav a:focus, #mainnav a.thispage {
+	background-color: #43a6cb;
+	text-decoration: none;
+}
+
+h1 {
+	text-align: center;
+	font-size: 70px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-decoration: none;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+#hero {
+	float: left;
+}
+#main {
+	float: none;
+	clear: left;
+	color: #4d4d4d;
+}
+
+a {
+	font-weight: bold;
+	text-decoration: none;
+}
+a:link {
+	color: #FF6600;
+}
+a:visited {
+	color: #FF944C;
+
+}
+a:hover, a:active, a:focus {
+	color: #7F3300;
+	text-decoration: underline;
+}
+
+footer {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2%;
+	background-color: #43a6cb;
+	color: #FFFFFF;
+	clear: left;
+}

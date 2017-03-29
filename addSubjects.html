@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add subjects</title>
+
+<link href="Style/post.css" rel="stylesheet" type="text/css"  media="all" />
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function() {
+	var count = 1;
+	$('#more').click(function() {
+		if (count >= 10) return;
+		$('#subj').append('<span><label>Subject</label></span><select name="university' + count + '" id="dat" class="dat"></select>');
+		$.ajaxCallSubj(0,1);
+		count++;
+		if (count > 9) {
+			$('#more').empty();
+			return;
+		}
+	});
+	$.ajaxCallSubj = function(i, flag){
+		var datastring = "valpass=" + i;
+		if (flag==0) return;
+		if (i==0) $('.dat').empty();
+		$.when($.ajax({
+			url: 'pullSubjData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === 0) flag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('.dat').append('<option value="' + dat.ID + '">' + dat.name + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallSubj(i + 1, flag)
+		});
+	};
+	$.ajaxCallSubj(0,1);
+});
+</script>
+</head>
+<body>
+<!--
+Country
+Name (Real name)
+DOB
+Sex
+Country specific education details, viz. University, College, Department, Year
+Email ID (hash this)
+Contact number (hash this)
+User level
+-->
+
+
+<div class="register-form">
+		<h1>Add subject</h1>
+		<div id="register-form-main">
+			<form action="updUserSubj.php" method="POST" enctype="multipart/form-data" id="reg">
+				<div id="subj">
+					<span><label>Subject</label></span>
+					<select name="university0" id="dat" class="dat">
+						<!--Fill with JS-->
+					</select>
+				</div>
+				
+				<div>
+					<span><label id="more">Add more</label></span>
+				</div>
+				
+				<div>
+					<input type="submit" value="Sign Up">
+				</div>
+			</form>
+		</div>
+</div>
+
+
+</body>
+</html>

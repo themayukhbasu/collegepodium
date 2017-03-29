@@ -1,0 +1,160 @@
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    background-color: #F0F0F0 !important;
+}
+.thispage{
+	background-color : #00AA77 !important;
+    color: white;
+}
+
+#sidebar-wrapper {
+    color: #16a085;
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    width: 0;
+    height: 100%;
+	padding-top: 0px !important;
+    margin-left: 0px;
+	margin-top: 10px;
+    overflow-y: auto;
+	background-color: white;
+	border-radius: 3.5px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    box-shadow: 0px 0px 4px 1px #AFAFAF;
+}
+
+.sidebar-wrapper-login{
+    color: #16a085;
+    z-index: 1000;
+    position: fixed;
+    left: 0px;
+    width: 0;
+    height: 100%;
+    padding-top: 0px !important;
+    margin-left: 0px;
+    margin-top: 10px;
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 3.5px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    box-shadow: 0px 0px 4px 1px #AFAFAF;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+/* left menu */
+.left-menu{
+    top: 300px;
+    left:0px;
+    position:fixed ;
+    font-family: Trench;
+    font-size: 20px;
+    font-weight: bolder;
+    padding:10px; 
+    text-align:center; 
+    color: #fff;
+    background: #33cc66;
+    text-decoration: none;
+}
+.left-menu:hover{
+    color: #fff;
+}
+
+/* Sidebar Styles */
+
+.sidebar-logout:hover{
+	background-color: #FF5C5C !important;
+	font-size: 20.5px !important;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #16a085;
+	font-size: 20.5px;
+	font-weight: bold;
+	font-family: Trench;
+	/*transition: all 0.5s ease;*/
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+	background-color : #00AA77;
+	border-radius: 4px;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+	
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+		
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+		padding-top: 0px;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+		padding-top: 0px !important;
+        position: relative;
+    }
+	
+}
+
+@media(max-width:768px) {
+	#post-wrap {
+		padding-top: 40% !important;
+	}
+	.register-form {
+		padding-top: 20% !important;
+	}
+}
+
+.left-sidebar-glyph{
+    font-size: 15px;
+    padding-left: 0px !important;
+}
+
+/*==========================================================*/
+
+.footnote	{
+		color : #AAAAA9;
+		font-size: 9.85px;
+		word-wrap: break-word;	
+		overflow: hidden;
+}

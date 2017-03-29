@@ -1,0 +1,9 @@
+diff a/mvp/votecountdown.php b/mvp/votecountdown.php	(rejected hunks)
+@@ -1,5 +1,5 @@
+ <?php
+-include 'vsVoteMethods.php';
++include '/php/voting/vsVoteMethods.php';
+ include_once 'session.php';
+ $pid = htmlspecialchars($_POST['discussid']);
+ echo abs(vsVoteCountNeg($pid));
+\ No newline at end of file

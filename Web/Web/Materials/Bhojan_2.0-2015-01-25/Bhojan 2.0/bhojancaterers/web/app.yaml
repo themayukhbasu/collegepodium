@@ -1,0 +1,34 @@
+application: bhojoncaterers
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+- url: /(.*\.(gif|png|jpg|ico|js|css|xml))
+  static_files: \1
+  upload: (.*\.(gif|png|jpg|ico|js|css|xml))
+
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt 
+
+- url: /
+  script: index.html
+  
+- url: /index.html
+  script: index.html
+ 
+- url: /contact.html
+  script: contact.html
+  
+- url: /about.html
+  script: about.html 
+
+- url: /gallery.html
+  script: gallery.html
+  
+- url: /services.html
+  script: services.html
+  
+- url: /(.+\.php)$
+  script: \1

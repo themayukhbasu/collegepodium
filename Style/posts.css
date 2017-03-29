@@ -1,0 +1,151 @@
+body{
+	word-wrap: break-word;
+}
+
+#orig-post-wrap {
+	border: #33CC66 2px groove;
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 5px;
+	padding-top:0px !important;
+	margin-bottom: 3px;
+}
+
+#page-content-wrapper {
+	padding-top: 15px;
+}
+
+#discuss-wrap {
+	background-color: #f6f7f8;
+	padding: 0px !important;
+	margin-bottom: 10px !important;
+	border: #D8D8D8 1px solid;
+	border-radius: 5px;
+}
+
+.main-post{
+	padding: 5px;
+	margin : 5px;
+	
+}
+
+.post-title{
+	padding: 0px !important;
+	margin: 0px !important;
+	border: 0px !important;
+	color: #5A5A5A !important;
+}
+
+.post-title p{
+	color: #5A5A5A !important;
+	border-radius: 2px;
+	font-size: 25.5px;
+	font-weight:bolder;
+}
+
+.postdat p{
+	padding-top: 2px;
+	padding-right: 4.5px;
+}
+
+.main-post-user {
+	font-size: 11px;
+	color: #015657;
+	display: inline;
+	
+}
+
+.main-post-time{
+	font-size: 11px;
+	color: #015657;
+	display: inline;
+	float:right;
+}
+
+.comment-post-user {
+	font-size: 13px;
+	color: #015657;
+	display: inline;
+	
+}
+
+.comment-post-time{
+	font-size: 11px;
+	color: #015657;
+	display: inline;
+	float:right;
+}
+
+.vote{
+	height: 17px;
+}
+
+.votecnt{
+	color: #015657;
+	vertical-align: middle;
+	padding: 1px;
+	font-weight: bold;
+}
+
+.vote-up a {
+	text-decoration:none;
+	padding: 10px; 
+	color: #33CC66;
+}
+
+.vote-down a{
+	text-decoration:none;
+	padding: 10px; 
+	font-weight: bold;
+	color: #33CC66;
+	
+}
+
+.vote-up a:focus {
+    outline: none;
+}
+
+.vote-down a:focus{
+	outline: none;
+}
+
+.main-post-delete{
+	display:inline;
+	float: right;
+}
+.main-post-delete:hover{
+	cursor: pointer;
+}
+.comment-post{
+	padding: 10px !important;
+	border-bottom : #D8D8D8 1px solid ;
+	min-height: 100px;
+}
+
+.comment-post p{
+	padding:0px;
+}
+
+.post_pic{
+	padding: 5px;
+	max-height: 570px;
+	max-width: 500px;
+	min-height: 100px;
+	min-width: 100px;
+	border: 1px solid #D8D8D8;
+	margin-top: 5px;
+}
+
+.post_pdf{
+	border-radius: 5px;
+	padding: 5px;
+	border: solid 1.5px #33CC66;
+	font-size: 14px;
+	font-weight: bold;
+}
+/* =================================================*/
+
+.comment-box {
+			resize: none;
+			width: 100%;
+		}

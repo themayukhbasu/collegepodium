@@ -1,0 +1,117 @@
+/* CSS of postdiscussjs.php */
+
+body {
+	border: 0 auto;
+	width: 80%;
+	padding-left: 14%;	
+	padding-right:6%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+
+.mid-break{
+	padding: 2px;
+}
+.post {
+	position:relative;
+	color:#909090;
+	background-color : #F0F0F0  ;
+	width: 80%;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #D8D8D8 ;
+    padding:30px;
+	
+	
+}
+
+
+.postuser a{
+	background: #33CC66;
+	padding:10px;
+	color:white;
+	text-decoration: none;
+}
+
+.postdat{
+	padding:9px;
+	padding-top:0px;
+	word-wrap: break-word;
+	width: 50%;
+}
+
+.posttime{
+	float:left;
+	padding-top: 4px;
+	font-size: 12px;
+}
+.vote {
+	float:right;
+	
+}
+.vote-up a{
+	text-decoration:none;
+	padding: 10px; 
+	color: #33CC66;
+	
+}
+
+.vote-down a{
+	text-decoration:none;
+	padding: 10px; 
+	color: #33CC66;
+	
+}
+
+.vote-up a:focus {
+    outline: none;
+}
+
+.vote-down a:focus{
+	outline: none;
+}
+
+/* ====================================================================================================== */
+/*discuss-form style*/
+
+.wrapper-2{
+	padding-top: 0px;	
+	padding-bottom:30px;
+	
+	padding-left:10%;
+	padding-right:10%;
+}
+.discuss-form{
+	position:relative;
+	width:80%;
+	color:#909090;
+	padding: 30px;
+	border : 5px #33CC00;
+	background-color : #F0F0F0  ;
+}
+.textbox{
+		height: 40px;
+		width: 80%;
+		padding-left:10%;
+		padding-right: 10%;
+}
+input[type="submit"]
+{
+	background: #33CC66;
+	font-size: 20px;
+	padding: 8px;
+	color: white;
+	border-style: outset;
+	/*border-color: #339900; */
+	height: 50px;
+	width: 100px;
+	
+}
+
+input[type="submit"]:hover{
+	background: #33CC00;
+	border-color: #33CC00;
+}
+
+/*=======================================================================================================*/

@@ -1,0 +1,9 @@
+diff a/mvp/voteup.php b/mvp/voteup.php	(rejected hunks)
+@@ -1,6 +1,6 @@
+ <?php
+ include_once 'session.php';
+-include_once 'vsVoteMethods.php';
++include_once '/php/voting/vsVoteMethods.php';
+ $pid = htmlspecialchars($_POST['discussid']);
+ $uid = $_SESSION['userid'];
+ $var = vsVoteUp($pid, $uid);

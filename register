@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<link href="Style/post.css" rel="stylesheet" type="text/css"  media="all" />
+<script src="js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+	var flag = 1;
+	$.ajaxCallUni = function(i, flag){
+		var datastring = "type=1&valpass=" + i;
+		if (flag==0) return;
+		$.when($.ajax({
+			url: 'pullTagData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === 0) flag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#uni').append('<option value="' + i + '">' + dat.ctGlobalTag.gtName + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallUni(i + 1, flag)
+		});
+	};
+	$.ajaxCallCol = function(i, colflag, pid){
+		if (i === 0) $('#col').empty();
+		var datastring = "type=2&pid=" + pid + "&valpass=" + i;
+		if (colflag == 0) return;
+		$.when($.ajax({
+			url: 'pullTagData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === null) colflag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#col').append('<option value="' + dat.ID + '">' + dat.stName + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallCol(i + 1, colflag, pid)
+		});
+	};
+	$.ajaxCallCourse = function(i, courseflag, pid){
+		if (i === 0) $('#course').empty();
+		var datastring = "type=3&pid=" + pid + "&valpass=" + i;
+		if (courseflag == 0) return;
+		$.when($.ajax({
+			url: 'pullTagData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === null) courseflag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#course').append('<option value="' + dat.ID + '">' + dat.ttName + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallCourse(i + 1, courseflag, pid)
+		});
+	};
+	$.ajaxCallCol(0, 1, 1);
+	$('#uni').on('change', function() {
+		$.ajaxCallCol(0, 1, $(this).val());
+	});
+	$('#col').on('change', function() {
+		$.ajaxCallCourse(0, 1, $(this).val());
+	});
+	$.ajaxCallUni(1, flag);
+	$.ajaxCallCourse(0, 1, 1); //very very hacky
+});
+</script>
+</head>
+<body>
+<!--
+Country
+Name (Real name)
+DOB
+Sex
+Country specific education details, viz. University, College, Department, Year
+Email ID (hash this)
+Contact number (hash this)
+User level
+-->
+
+
+<div class="register-form">
+		<h1>Sign Up</h1>
+		<div id="register-form-main">
+			<form action="api-register.php" method="POST" enctype="multipart/form-data" id="reg">
+				<div>
+					<span><label>Name:</label></span>
+					<span><input name="name" type="text" class="textbox" required placeholder="Enter Real Name"></span>
+				</div>
+				
+				<div>			
+					<span><label>Email:</label></span>
+					<input type="email" name="email" required placeholder="Enter Valid Email Id">		
+				</div>
+				
+				<div>			
+					<span><label>Password:</label></span>
+					<input type="password" name="password" required >		
+				</div>
+				
+				<div>
+					<span><label>Country:</label></span>
+					<select name="country">
+						<option value="none">Select Your Country</option>
+						<option value="india">India</option>
+						<option value="usa">United States</option>
+						<option value="uk">United Kingdom</option>
+						<option value="germany">Germany</option>
+					</select>
+				</div>	
+				
+				<div>
+					<span><label>Date of Birth</label></span>
+					<input type="date" name="dob">
+				</div>	
+				
+				<div>
+					<span><label>Sex</label></span>
+					<input type="radio" name="sex" value="male" checked><label id="radio-label">Male</label>
+					<input type="radio" name="sex" value="female" ><label id="radio-label">Female</label>
+					<input type="radio" name="sex" value="other"><label id="radio-label">Other</label>
+				</div>
+				
+				<div>
+					<span><label>Contact Number</label></span>
+					<input type="text" name="contact_number" placeholder="Enter Valid Contact Number">
+				</div>
+				
+				<div>
+					<span><label>University</label></span>
+					<select name="university" id="uni">
+						<!--Fill with JS-->
+					</select>
+				</div>
+				
+				<div>
+					<span><label>College</label></span>
+					<select name="college" id="col">
+						<!--Fill with JS-->
+					</select>
+				</div>
+				
+				<div>
+					<span><label>Course</label></span>
+					<select name="course" id="course">
+						<!--Fill with JS-->
+					</select>
+				</div>
+				
+				<div>
+					<span><label>Present Semester</label></span>
+					<input type="number" name="sem" min="1" max="10" placeholder="Enter Only Number">
+				</div>
+				
+				<div>
+					<input type="submit" value="Sign Up">
+				</div>
+			</form>
+		</div>
+</div>
+
+
+</body>
+</html>

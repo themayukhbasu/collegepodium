@@ -1,0 +1,537 @@
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>College Podium :: Post</title>
+<link href="Style/post.css" rel="stylesheet" type="text/css">	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="bs/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bs/css/bootstrap-theme.min.css">
+	<script src="bs/js/bootstrap.min.js"></script>
+	<script src="bs/js/bootbox.min.js"></script>
+<link rel="stylesheet" href="Style/sidebar.css">
+
+	<style>
+		body { 
+			padding-top: 70px; 
+		}
+
+		.navbar-custom {
+			background-color: #00AA77;
+			border-color: #33CC66;
+			margin-bottom: 0px !important;
+		}
+		.navbar-brand {
+			color: black;
+			font: 25px;
+		}
+		#head-link{
+			color: white;
+			text-decoration: none;
+			font-size: 40px !important;
+		}
+		.post-title{
+			transition: color 0.5s ease;
+			text-decoration:none !important;
+			color: #2CAD2C !important;
+		}
+		.post-title:hover{
+			color: #289C28 !important;
+			
+		}
+		#drawer {
+		  background-color: hsl(153, 100%, 30%) !important;
+		  background-repeat: repeat-x;
+		  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00ff8c", endColorstr="#009954");
+		  background-image: -khtml-gradient(linear, left top, left bottom, from(#00ff8c), to(#009954));
+		  background-image: -moz-linear-gradient(top, #00ff8c, #009954);
+		  background-image: -ms-linear-gradient(top, #00ff8c, #009954);
+		  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00ff8c), color-stop(100%, #009954));
+		  background-image: -webkit-linear-gradient(top, #00ff8c, #009954);
+		  background-image: -o-linear-gradient(top, #00ff8c, #009954);
+		  background-image: linear-gradient(#00ff8c, #009954);
+		  border-color: #009954 #009954 hsl(153, 100%, 25%);
+		  color: #fff !important;
+		  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+		  -webkit-font-smoothing: antialiased;
+		}
+
+		#btn-draw {
+			-webkit-border-radius: 0px;
+			-moz-border-radius: 0px;
+			-o-border-radius: 0px;
+			border-radius: 0px;
+			border: 0px;
+			background-color: #33CC66 !important;
+		}
+		.container-fluid {
+			margin: 0px !important;
+			padding: 0px !important;
+		}
+	</style>
+	<script src="header.js"></script>
+<style>
+.note_wrapper {
+	word-wrap: break-word;
+    background-color: white !important  ;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #D8D8D8 ;
+	min-height: 250px;
+	border-radius: 10px;
+    padding-right: 15px;
+	padding-left: 15px;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	margin-top:2px;
+	margin-bottom:2px;
+}
+
+.note_file{
+	padding: 5px;
+	height: 30%;
+	width: 30%;
+	
+}
+.note_pdf{
+	border-radius: 5px;
+	padding: 5px;
+	border: solid 1.5px #33CC66;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.note_user{
+	color: gray;
+	padding: 3px;
+	padding-bottom: 0px;
+}
+.note_user {
+	font-size: 10px;
+	color: gray;
+}
+
+.post_tag{
+	float: right;
+	color: gray;
+	font-size: 10px;
+	padding-bottom: 8px;
+}
+.post_tag .post_primtag{
+	float: right;
+}
+
+.post_tag .post_sectag {
+	float:right;
+}
+
+.post_tag .post_tertag {
+	float: right;
+}
+.note_title {
+	border-radius: 20px;
+	font-size: 30px;
+	word-wrap: break-word;
+	font-color: #505050 !important;
+	padding: 5px;
+}
+
+.container-fluid {
+	margin: 0px !important;
+	padding: 0px !important;
+}
+
+.post_title a {
+	font-weight: bold;
+}
+
+.note_content{
+	font-size: 14px;
+	padding: 5px;
+	padding-left: 10px;
+	overflow: hidden;
+}
+
+/*--------------------------------------------------------------------*/
+</style>
+<script>
+$(document).ready(function() {
+	$( "#coursewrap" ).toggle();
+	$( "#semwrap" ).toggle();
+	$.ajaxCall = function(i, j){
+		var quartag = $("#sem").val();
+		var tertag = $("#course").val();
+		var sectag = $("#col").val();
+		var primtag = $("#uni").val();
+		if ( i === j ) return;
+		$.when($.ajax({
+			url: 'debug.php',
+			dataType: "json",
+			type: "GET",
+			data: {
+				valpass: i,
+				quartag: quartag,
+				tertag: tertag,
+				sectag: sectag,
+				primtag: primtag
+			},
+			success: function(note) {
+				alert(JSON.stringify(note));
+				var count = 0;
+				var file;
+				if ( note.note_file != undefined ) {
+					file = note.note_file;
+					if (file.constructor === Array)
+						count = file.length;
+					else count = 1;
+				}
+				alert(count);
+				if ( count === 1 ) {
+					var ext = file.split('.').pop().toLowerCase();
+				}
+				else {
+					var ext = Array();
+					for ( var i = 0; i < count; ++i ) {
+						ext.push( file[i].split('.').pop().toLowerCase() );
+					}
+				}
+				if ( count != 0 ) console.log(JSON.stringify(ext));
+				var disp = note.data.substring(0,600);
+				disp = '<p>' + disp.split(/\n([ \t]*\n)+/g).join('</p><p>').split('\n').join('<br />') + '</p>';
+				var title = note.title.substring(0, 50);
+				title = '<p>' + title.split(/\n([ \t]*\n)+/g).join('</p><p>').split('\n').join('<br />') + '</p>';
+				if ( count === 0 ) {
+					$('#note-main-wrap').append('<div class="note_wrapper"><div class="note_user">' +
+											'<a href="userdata.php?user_id=' + note.userid + '"> ' + note.userrealname + '</a></div>' +
+											'<div class="note_title">' + title + '</div>' +
+											'<div class="note_content">' + disp + '</div></div>');
+				}
+				else if ( count === 1 ) {
+					if ( ext === 'jpeg' || ext === 'jpg' || ext === 'png' || ext === 'bmp' || ext === 'gif' ) {
+						$('#note-main-wrap').append('<div class="note_wrapper"><div class="note_user">' +
+												'<a href="userdata.php?user_id=' + note.userid + '"> ' + note.userrealname + '</a></div>' +
+												'<div class="note_file_wrap"><img class="note_pic" id="note_pic_' + i + '" src="' + file + '"></img></div>' +
+												'<div class="note_title">' + title + '</div>' +
+												'<div class="note_content">' + disp + '</div></div>');
+					}
+					else if ( ext === 'pdf' ) {
+						$('#note-main-wrap').append('<div class="note_wrapper"><div class="note_user">' +
+												'<a href="userdata.php?user_id=' + note.userid + '"> ' + note.userrealname + '</a></div>' +
+												'<div class="note_file_wrap"><embed class="note_pdf" id="note_pdf_' + i + '" src="' + file + '"></embed></div>' +
+												'<div class="note_title">' + title + '</div>' +
+												'<div class="note_content">' + disp + '</div></div>');
+					}
+				}
+				else {
+					//might want JQuery objects
+					var begin = '<div class="note_wrapper"><div class="note_user">' +
+								'<a href="userdata.php?user_id=' + note.userid + '"> ' + note.userrealname + '</a></div>';
+					var files = '';
+					for ( var i = 0; i < count; ++i ) {
+						if ( ext[i] === 'pdf' ) {
+							files = files + '<div class="note_file_wrap"><embed class="note_pdf" id="note_pic_' + i + '" src="' + file[i] + '"></embed></div>';
+						}
+						else if ( ext[i] === 'jpeg' || ext[i] === 'jpg' || ext[i] === 'png' || ext[i] === 'gif' || ext[i] === 'bmp' ) {
+							files = files + '<div class="note_file_wrap"><img class="note_pic" id="note_pic_' + i + '" src="' + file[i] + '"></img></div>';
+						}
+					}
+					var end = '<div class="note_title">' + title + '</div>' + '<div class="note_content">' + disp + '</div></div>';
+					$('#note-main-wrap').append(begin + files + end);
+				}
+			}
+		})).done(function() {
+		$.ajaxCall(i + 1, j)
+		});
+	}
+	$("#submit").click(function() {
+		$.ajaxCall(0, 10);
+		$("#form").toggle();
+	});
+	$(document).on("click", ".note_pic", function(e) {
+		alert('hmm');
+		e.preventDefault();
+		var url = $(this).attr('src');
+		//var id = $(this).attr('id');
+		//var element = Number($('#' + id).parent().attr('name').slice(5));
+		var pic = Number($(this).attr('id').slice(9));
+		$('embed').toggle();
+		/*if ( pic == element )*/ bootbox.dialog({
+									message: "<img style='height: auto; max-width: 100%;' src='" + url + "'>",
+									size: 'large',
+									 buttons: {
+										close: {
+										  label: "Close",
+										  className: "btn-primary",
+										}
+									}
+								});
+		
+		$('embed').toggle();
+	});	
+	
+	$(document).on("click", ".note_pdf", function(e) {
+		e.preventDefault();
+		var url = $(this).attr('name');
+		var id = $(this).attr('ID');
+		var element = Number($('#' + id).parent().attr('name').slice(5));
+		var pic = Number($(this).attr('id').slice(9));
+		
+		if ( pic === element ) bootbox.dialog({
+									message: "<iframe style='height: auto; min-height: 400px; max-height: 2000px; width: 100%' src='" + url + "'>",
+									 buttons: {
+										close: {
+										  label: "Close",
+										  className: "btn-primary",
+										}
+									}
+								}).find("div.modal-dialog").addClass("modal-md");
+	});	
+	$.ajaxCallSubj = function(i, flag){
+		var datastring = "valpass=" + i;
+		if (flag==0) return;
+		if (i==0) $('.dat').empty();
+		$.when($.ajax({
+			url: 'pullSubjData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === 0) flag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#subj').append('<option value="' + dat.ID + '">' + dat.name + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallSubj(i + 1, flag)
+		});
+	};
+	$.ajaxCallSubj(0,1);
+
+	var flag = 1;
+	$(document).on("change", "#col", function() {
+		if ($(this).val() != -1) 
+			$('#coursewrap').toggle(true);
+		else {
+			$('#coursewrap').toggle(false);
+			$('#semwrap').toggle(false);
+		}
+	});
+	
+	$(document).on("change", "#course", function() {
+		if ($(this).val() != -1)
+			$('#semwrap').toggle(true);
+		else $('#semwrap').toggle(false);
+	});
+	
+	$.ajaxCallUni = function(i, flag){
+		var datastring = "type=1&valpass=" + i;
+		if (flag==0) return;
+		$.when($.ajax({
+			url: 'pullTagData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === 0) flag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#uni').append('<option value="' + i + '">' + dat.ctGlobalTag.gtName + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallUni(i + 1, flag)
+		});
+	};
+	$.ajaxCallCol = function(i, colflag, pid){
+		if (i === 0) $('#col').empty();
+		if (i === 0) $('#col').append('<option value="-1">Select College</option>');
+		var datastring = "type=2&pid=" + pid + "&valpass=" + i;
+		if (colflag == 0) return;
+		$.when($.ajax({
+			url: 'pullTagData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === null) colflag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#col').append('<option value="' + dat.ID + '">' + dat.stName + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallCol(i + 1, colflag, pid)
+		});
+	};
+	$.ajaxCallCourse = function(i, courseflag, pid){
+		if (i === 0) $('#course').empty();
+		if (i === 0) $('#course').append('<option value="-1">Select Course</option>');
+		var datastring = "type=3&pid=" + pid + "&valpass=" + i;
+		if (courseflag == 0) return;
+		$.when($.ajax({
+			url: 'pullTagData.php',
+			dataType: "json",
+			data: datastring,
+			type: "GET",
+			success: function(dat){
+				if (dat === null) courseflag = 0; //this is a hackish way, if db pull fails, 0 is being returned
+				$('#course').append('<option value="' + dat.ID + '">' + dat.ttName + '</option>');
+			}
+		})).done(function() {
+			$.ajaxCallCourse(i + 1, courseflag, pid)
+		});
+	};
+	$.ajaxCallCol(0, 1, 1);
+	$('#uni').on('change', function() {
+		$.ajaxCallCol(0, 1, $(this).val());
+	});
+	$('#col').on('change', function() {
+		$.ajaxCallCourse(0, 1, $(this).val());
+	});
+	$.ajaxCallUni(1, flag);
+	$.ajaxCallCourse(0, 1, 1); //very very hacky
+});
+
+</script>
+</head>
+<body>
+<div id="form">
+			<div>
+				<span><label>Subject</label></span> 
+				<select name="post_subject" id="subj">
+						<!--Fill with JS-->
+				</select>
+			</div>
+			
+			<div>
+			<span><label>University</label></span>
+				<select name="primtag" id="uni">
+						<!--Fill with JS-->
+				</select>
+			</div>
+				
+			<div id="colwrap">
+				<span><label>College</label></span>
+				<select name="sectag" id="col">
+					<!--Fill with JS-->
+				</select>
+			</div>
+				
+			<div id="coursewrap">
+				<span><label>Course</label></span>
+				<select name="tertag" id="course">
+					<!--Fill with JS-->
+				</select>
+			</div>
+			
+			<div id="semwrap">
+				<span><label>Present Semester</label></span>
+				<input type="number" id="sem" name="quartag" min="0" max="10" placeholder="Enter Only Number" value="0">
+			</div>	
+<input type="submit" value="Fetch" class="btn btn-default" id ="submit"></input>
+</div>
+<div class="container-fluid">
+		<div class="navbar navbar-custom navbar-fixed-top" role="navigation">
+
+			<div class="col-sm-3 col-md-3" id="col-draw">		
+				<div class="drawer">
+					<button type="button" class="btn btn-default btn-lg" id="drawer">
+					 <span id="btn-draw" class="glyphicon glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+					</button>
+					<!--<ul class="dropdown-menu">
+						<li><a href="#">Posts</a></li>
+						<li><a href="#">Notes</a></li>
+						<li class="divider"></li>
+						<li><a href="//127.0.0.1/mvp/upload_notes.php">Upload Notes</a></li>
+						<li><a href="//127.0.0.1/mvp/static_upload.php">Post a notice / query</a></li>
+						<li class="divider"></li>
+						<li><a href="#" id="logout" data-toggle="confirmation">Logout</a></li>
+					</ul>-->
+				</div>
+			</div>
+			<!--
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" rel="home" href="//127.0.0.1/mvp/index.php" title="">College Podium</a>
+			</div>
+			-->
+			<div class="col-sm-6 col-md-6" id="col-draw">
+				<a id="head-link"href="index.php">College Podium</a>
+			</div>
+			<div class="col-sm-3 col-md-3 pull-right">
+				<form class="navbar-form" role="search">			
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						</div>
+					</div>
+				</form>
+
+			</div>	
+			
+		</div>
+		<div id="wrapper" class="toggled">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li>
+                    <a href="upload_notes.php">Upload Notes</a>
+                </li>
+                <li>
+                    <a href="static_upload.php">Post Query/Update</a>
+                </li>
+                
+				<hr class="divider" />
+                
+				<li>
+                    <a href="#">College</a>
+                </li>
+                <li>
+                    <a href="#">University</a>
+                </li>
+                <li>
+                    <a href="#">Department</a>
+                </li>
+                <li>
+                    <a href="index.php">All Posts</a>
+                </li>
+				
+				<hr class="divider" />
+				
+				<li>
+                    <a href="notes.php">all notes</a>
+                </li>
+				
+				<hr class="divider" />
+				
+				<li>
+                    <a href="#" id="logout">Logout</a>
+                </li>
+				
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                         <!-- This span is for filling posts (from JQuery AJAX method) -->
+							<div id="note-main-wrap" class="col-md-10 col-md-offset-1">
+							</div> 
+						 <!-- ========================================================== -->
+						<footer>© Copyright 2015 College Podium. All rights reserved.</footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+		</div>
+			  
+
+	 </div>	
+
+</body>
+
+</html>

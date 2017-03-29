@@ -1,0 +1,6 @@
+Task @ api-register.php
+
+ctUser is the class to save and validate data about a user.
+After the ctUser is set, we need to check again if any of 
+the object members are empty. So we can add a flag to check
+this and not execute the register code if flag is false.

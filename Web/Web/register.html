@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+
+<link href="Style/post.css" rel="stylesheet" type="text/css"  media="all" />
+
+</head>
+<body>
+<!--
+Country
+Name (Real name)
+DOB
+Sex
+Country specific education details, viz. University, College, Department, Year
+Email ID (hash this)
+Contact number (hash this)
+User level
+-->
+
+
+<div class="register-form">
+		<h1>Sign Up</h1>
+		<div id="register-form-main">
+			<form action="api-register.php" method="POST">
+				<div>
+					<span><label>Name:</label></span>
+					<span><input name="name" type="text" class="textbox" required placeholder="Enter Real Name"></span>
+				</div>
+				
+				<div>			
+					<span><label>Email:</label></span>
+					<input type="email" name="email" required placeholder="Enter Valid Email Id">		
+				</div>
+				
+				<div>
+					<span><label>Country:</label></span>
+					<select name="country">
+						<option value="none">Select Your Country</option>
+						<option value="india">India</option>
+						<option value="usa">United States</option>
+						<option value="uk">United Kingdom</option>
+						<option value="germany">Germany</option>
+					</select>
+				</div>	
+				
+				<div>
+					<span><label>Date of Birth</label></span>
+					<input type="date" name="dob">
+				</div>	
+				
+				<div>
+					<span><label>Sex</label></span>
+					<input type="radio" name="sex" value="male" checked><label id="radio-label">Male</label>
+					<input type="radio" name="sex" value="female" ><label id="radio-label">Female</label>
+					<input type="radio" name="sex" value="other"><label id="radio-label">Other</label>
+				</div>
+				
+				<div>
+					<span><label>Contact Number</label></span>
+					<input type="text" name="contact_number" placeholder="Enter Valid Contact Number">
+				</div>
+				
+				<div>
+					<span><label>University</label></span>
+					<input type="text" name="university">
+				</div>
+				
+				<div>
+					<span><label>College</label></span>
+					<input type="text" name="college">
+				</div>
+				
+				<div>
+					<span><label>Present Year</label></span>
+					<input type="number" name="year" min="1" max="6" placeholder="Enter Only Number">
+				</div>
+				
+				<div>
+					<input type="submit" value="Sign Up">
+				</div>
+			</form>
+		</div>
+</div>
+
+
+</body>
+</html>
